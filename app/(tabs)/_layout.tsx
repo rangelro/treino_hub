@@ -8,8 +8,6 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors.primary,
-        // Adicionei esta linha para garantir que o cabeçalho de cada aba
-        // seja renderizado pelo Stack pai, o que dá o título correto a cada tela.
         headerShown: true,
       }}>
       <Tabs.Screen

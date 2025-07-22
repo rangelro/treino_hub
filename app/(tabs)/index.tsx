@@ -2,10 +2,9 @@ import React from 'react';
 import { View, StyleSheet, FlatList, Text, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
 import { Workout } from '../../types/types';
-import WorkoutCard from '../../components/WorkoutCard'; // Importando nosso componente
+import WorkoutCard from '../../components/WorkoutCard'; 
 import { Colors } from '../../constants/Colors';
 
-// Dados falsos para simular os treinos
 const MOCK_WORKOUTS: Workout[] = [
   {
     id: 1, name: 'Treino A - Peito e Tríceps',
@@ -17,14 +16,12 @@ const MOCK_WORKOUTS: Workout[] = [
   },
 ];
 
-// Este é o componente da tela Home (a primeira aba)
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <FlatList
         data={MOCK_WORKOUTS}
         keyExtractor={(item) => item.id.toString()}
-        // Usando o componente WorkoutCard para ter o visual correto
         renderItem={({ item }) => <WorkoutCard workout={item} />}
         contentContainerStyle={styles.list}
         ListHeaderComponent={
@@ -35,7 +32,7 @@ export default function HomeScreen() {
         }
       />
 
-      {/* Botão Flutuante (FAB) para adicionar um novo treino */}
+    
       <Link href="/treinos/add" asChild>
         <TouchableOpacity style={styles.fab}>
           <Text style={styles.fabIcon}>+</Text>
