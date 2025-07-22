@@ -7,6 +7,9 @@ import { searchExerciseByName } from '../../services/api';
 import { Exercise, WorkoutExercise } from '../../types/types';
 import { Colors } from '../../constants/Colors';
 
+import EditableExerciseItem from '../../components/EditableExerciseItem';
+
+
 export default function AddWorkoutScreen() {
   const [workoutName, setWorkoutName] = useState('');
   const [addedExercises, setAddedExercises] = useState<WorkoutExercise[]>([]);
@@ -30,13 +33,28 @@ export default function AddWorkoutScreen() {
 
   // Função para adicionar um exercício da busca à lista
   const addExerciseToList = (exercise: Exercise) => {
-    // Evita adicionar o mesmo exercício duas vezes
     if (addedExercises.some(ex => ex.id === exercise.id)) return;
 
     // Adiciona o exercício com valores padrão de séries e repetições
     setAddedExercises([...addedExercises, { ...exercise, sets: 4, reps: 10 }]);
     setSearchQuery('');
     setSearchResults([]);
+  };
+  //manipular os dados do exercicio
+  const handleExerciseChange = (exerciseId: number, type: 'sets' | 'reps', change: number) => {
+    setAddedExercises(currentExercises =>
+      currentExercises.map(ex => {
+        if (ex.id === exerciseId) {
+          const newValue = ex[type] + change;
+          return { ...ex, [type]: newValue > 0 ? newValue : 1 };
+        }
+        return ex;
+      })
+    );
+  };
+  //remover
+  const handleRemoveExercise = (exerciseId: number) => {
+    setAddedExercises(currentExercises => currentExercises.filter(ex => ex.id !== exerciseId));
   };
 
   // Função para guardar o treino 
@@ -98,7 +116,7 @@ export default function AddWorkoutScreen() {
         ListEmptyComponent={<Text style={styles.emptyListText}>Nenhum exercício adicionado.</Text>}
       />
 
-      <Button title="Guardar Treino" onPress={handleSaveWorkout} color={Colors.primary} />
+      <Button title="Salvar Treino" onPress={handleSaveWorkout} color={Colors.primary} />
     </View>
   );
 }

@@ -15,6 +15,10 @@ export default function RootLayout() {
           name="treinos/[id]" 
           options={{ title: 'Detalhes do Treino' }} 
         />
+        <Stack.Screen 
+          name="treinos/edit/[id]" 
+          options={{ title: 'Editar Treino' }} 
+        />
       </Stack>
     </WorkoutProvider>
   );

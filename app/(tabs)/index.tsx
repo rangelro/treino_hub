@@ -1,34 +1,39 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, FlatList, Text, TouchableOpacity , ActivityIndicator } from 'react-native';
 import { Link } from 'expo-router';
 import { Workout } from '../../types/types';
 import WorkoutCard from '../../components/WorkoutCard'; 
 import { Colors } from '../../constants/Colors';
-
-const MOCK_WORKOUTS: Workout[] = [
-  {
-    id: 1, name: 'Treino A - Peito e Tríceps',
-    exercises: [ { id: 101, name: 'Supino Reto', sets: 4, reps: 10 }, { id: 102, name: 'Supino Inclinado', sets: 4, reps: 12 }, ],
-  },
-  {
-    id: 2, name: 'Treino B - Costas e Bíceps',
-    exercises: [ { id: 201, name: 'Remada Curvada', sets: 4, reps: 10 }, { id: 202, name: 'Puxada Alta', sets: 3, reps: 15 }, ],
-  },
-];
+import { useWorkoutContext } from '../../contexts/WorkoutContext';
 
 export default function HomeScreen() {
+
+  const { workouts, loading } = useWorkoutContext();
+
+  if (loading) {
+    return (
+      <View style={[styles.container, styles.centered]}>
+        <ActivityIndicator size="large" color={Colors.primary} />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
+      
       <FlatList
-        data={MOCK_WORKOUTS}
+        data={workouts}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <WorkoutCard workout={item} />}
         contentContainerStyle={styles.list}
         ListHeaderComponent={
-          <Text style={styles.headerTitle}>Treino de Hoje:</Text>
+          <Text style={styles.headerTitle}>Seus treinos:</Text>
         }
         ListEmptyComponent={
-            <Text style={styles.emptyText}>Nenhum treino encontrado.</Text>
+          <View style={styles.centered}>
+              <Text style={styles.emptyText}>Nenhum treino guardado.</Text>
+              <Text style={styles.emptySubText}>Clique no '+' para começar!</Text>
+          </View>
         }
       />
 
@@ -47,6 +52,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.background,
   },
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   list: {
     padding: 16,
   },
@@ -60,6 +70,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 50,
     fontSize: 16,
+    color: Colors.secondary,
+  },
+  emptySubText: {
+    textAlign: 'center',
+    marginTop: 10,
+    fontSize: 14,
     color: Colors.secondary,
   },
   fab: {

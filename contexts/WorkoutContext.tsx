@@ -60,8 +60,9 @@ export const WorkoutProvider = ({ children }: { children: ReactNode }) => {
     saveWorkoutsToStorage(updatedWorkouts);
   }, [workouts, saveWorkoutsToStorage]);
 
-  const updatedWorkout = useCallback((updatedWorkout: Workout) => {
+  const updateWorkout = useCallback((updatedWorkout: Workout) => {
     const updatedWorkouts = workouts.map(w => w.id === updatedWorkout.id ? updatedWorkout : w);
+    setWorkouts(updatedWorkouts);
     saveWorkoutsToStorage(updatedWorkouts)
   }, [workouts, saveWorkoutsToStorage]);
 
@@ -71,7 +72,7 @@ export const WorkoutProvider = ({ children }: { children: ReactNode }) => {
     loading,
     addWorkout,
     deleteWorkout,
-    updatedWorkout,
+    updateWorkout,
   };
 
   return (

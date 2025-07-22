@@ -1,9 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, Button, Alert, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Button, Alert, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import ExerciseItem from '../../components/ExerciseItem';
 import { Colors } from '../../constants/Colors';
 import { useWorkoutContext } from '../../contexts/WorkoutContext';
+
+import {Link, Stack} from 'expo-router';
+
 
 export default function WorkoutDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>(); 
@@ -46,6 +49,16 @@ export default function WorkoutDetailScreen() {
 
   return (
     <View style={styles.container}>
+      
+      <Stack.Screen options={{
+        headerRight: () => (
+          <Link href={`/treinos/edit/${id}`} asChild>
+            <TouchableOpacity>
+              <Text style={{ color: Colors.primary, fontSize: 16 }}>Editar</Text>
+            </TouchableOpacity>
+          </Link>
+        )
+      }}/>
       <FlatList
         data={workout.exercises}
         keyExtractor={(item) => item.id.toString()}
