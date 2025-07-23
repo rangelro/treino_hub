@@ -6,6 +6,8 @@ import WorkoutCard from '../../components/WorkoutCard';
 import { Colors } from '../../constants/Colors';
 import { useWorkoutContext } from '../../contexts/WorkoutContext';
 
+import InfoSaude from '../../components/InfoSaude';
+
 export default function HomeScreen() {
 
   const { workouts, loading } = useWorkoutContext();
@@ -20,7 +22,13 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      
+
+      <View style={styles.healthCard}>
+        <Text style={styles.healthCardTitle}>Dica do dia:</Text>
+
+        <InfoSaude/>
+      </View>
+
       <FlatList
         data={workouts}
         keyExtractor={(item) => item.id.toString()}
@@ -92,6 +100,20 @@ const styles = StyleSheet.create({
   },
   fabIcon: {
     fontSize: 30,
+    color: 'white',
+  },
+  healthCard: {
+    margin: 16,
+    padding: 16,
+    backgroundColor: Colors.primary,
+    borderRadius: 8,
+    elevation: 2,
+    minHeight:80
+  },
+  healthCardTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 8,
     color: 'white',
   },
 });
