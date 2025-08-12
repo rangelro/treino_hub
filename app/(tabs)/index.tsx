@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, StyleSheet, FlatList, Text, TouchableOpacity , ActivityIndicator } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, StyleSheet, FlatList, Text, TouchableOpacity , ActivityIndicator, Platform } from 'react-native';
 import { Link } from 'expo-router';
 import { Workout } from '../../types/types';
 import WorkoutCard from '../../components/WorkoutCard'; 
@@ -7,8 +7,17 @@ import { Colors } from '../../constants/Colors';
 import { useWorkoutContext } from '../../contexts/WorkoutContext';
 
 import InfoSaude from '../../components/InfoSaude';
+import * as Notifications from 'expo-notifications';
+
+import { configOneSignal } from '../../onesignalConfig';
+
+
 
 export default function HomeScreen() {
+
+  useEffect(() => {
+    configOneSignal();
+  }, []);
 
   const { workouts, loading } = useWorkoutContext();
 

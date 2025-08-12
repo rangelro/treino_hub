@@ -2,31 +2,35 @@
   "expo": {
     "name": "treino_hub",
     "slug": "treino_hub",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "icon": "./assets/images/icon.png",
     "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "ios": {
-      "supportsTablet": true
+    "extra": {
+      "eas": {
+        "projectId": "eaa4493f-6f76-4ab0-add2-84c5ce4e475c"
+      }
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "edgeToEdgeEnabled": true
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-router"
-    ]
-  }
+      "package": "com.rangelro.treino_hub"
+    }
+  },
+  "ios": {
+    "supportsTablet": true
+  },
+  "android": {
+    "edgeToEdgeEnabled": true,
+    "package": "com.anonymous.treino_hub"
+  },
+  "plugins": [
+    "expo-router"
+  ],
+  "extra": {
+    "router": {},
+    "eas": {
+      "projectId": "eaa4493f-6f76-4ab0-add2-84c5ce4e475c"
+    }
+  },
+  "owner": "rangelro"
 }
