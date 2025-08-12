@@ -19,9 +19,9 @@ Este projeto foi construído utilizando tecnologias modernas para o desenvolvime
 
 React Native
 
-Expo
-
 TypeScript
+
+Expo
 
 Expo Router (para navegação)
 
@@ -48,3 +48,7 @@ Bash
 
 npm start
 Após iniciar, um QR code será exibido no terminal. Escaneie-o com o aplicativo Expo Go (disponível para Android e iOS) para abrir o projeto em seu dispositivo.
+
+Prints das telas
+
+<img width="1080" height="2400" alt="Screenshot_1754942485" src="https://github.com/user-attachments/assets/cacd116a-9dcc-435d-b3c7-931ce8e6d77d" /><img width="1080" height="2400" alt="Screenshot_1754942480" src="https://github.com/user-attachments/assets/26895c19-3e61-40a1-95ed-e90cdde64a69" /><img width="1080" height="2400" alt="Screenshot_1754942472" src="https://github.com/user-attachments/assets/3e0a38cb-814f-4f7a-96a1-5d8f43181b15" /><img width="1080" height="2400" alt="Screenshot_1754942490" src="https://github.com/user-attachments/assets/cf1f8c10-103b-4929-bdbb-94d985c48d73" />
