@@ -29,12 +29,8 @@ export default function AddWorkoutScreen() {
   const muscleGroups = getMuscleGroups();
 
   useEffect(() => {
-    if (searchQuery.length > 1 || selectedMuscleGroup !== 'Todos') {
-      const results = searchExercises(searchQuery, selectedMuscleGroup);
-      setSearchResults(results);
-    } else {
-      setSearchResults([]);
-    }
+    const results = searchExercises(searchQuery, selectedMuscleGroup);
+    setSearchResults(results);
   }, [searchQuery, selectedMuscleGroup]);
 
   const handleSelectedExercise = (exercise: Exercise) => {
@@ -45,8 +41,8 @@ export default function AddWorkoutScreen() {
     }
     Haptics.selectionAsync();
     setSelectedExercise(exercise);
-    setCurrentSets(4);
-    setCurrentReps(10);
+    setCurrentSets(3);
+    setCurrentReps(12);
     setIsModalVisible(true);
   };
 
@@ -168,6 +164,7 @@ export default function AddWorkoutScreen() {
       <TextInput
         style={[styles.input, nameError && styles.inputError]}
         placeholder="Nome do Treino (Ex: Treino A - Peito)"
+        placeholderTextColor="#666"
         value={workoutName}
         onChangeText={(text) => {
           setWorkoutName(text);
@@ -177,7 +174,7 @@ export default function AddWorkoutScreen() {
       {nameError && <Text style={styles.errorText}>O nome do treino é obrigatório.</Text>}
 
       <Text style={styles.label}>Adicionar Exercício</Text>
-      
+
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.filterContainer}>
         {muscleGroups.map((group) => (
           <TouchableOpacity
@@ -201,6 +198,7 @@ export default function AddWorkoutScreen() {
       <TextInput
         style={styles.input}
         placeholder="Procurar por nome..."
+        placeholderTextColor="#666"
         value={searchQuery}
         onChangeText={setSearchQuery}
       />
@@ -325,14 +323,14 @@ const styles = StyleSheet.create({
   },
   resultText: {
     fontSize: 16,
-    color: Colors.text,
+    color: Colors.secondary,
   },
   resultSubtext: {
     fontSize: 12,
     color: '#999',
   },
   addedItem: {
-    backgroundColor: '#E0F2F1',
+    backgroundColor: Colors.card,
     padding: 12,
     borderRadius: 8,
     marginBottom: 8,
@@ -357,6 +355,7 @@ const styles = StyleSheet.create({
   saveButtonContainer: {
     marginTop: 10,
     marginBottom: 20,
+    borderRadius: 10,
   },
   modalContainer: {
     flex: 1,

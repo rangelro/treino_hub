@@ -7,6 +7,7 @@ export interface Exercise {
 export interface WorkoutExercise extends Exercise {
     sets: number;
     reps: number;
+    weight?: string;
 }
 
 export interface Workout {

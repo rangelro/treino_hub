@@ -40,9 +40,8 @@ export default function EditWorkoutScreen() {
     }
   }, [id, workouts]);
 
-  // Busca reativa
   useEffect(() => {
-    if (searchQuery.length > 1 || selectedMuscleGroup !== 'Todos') {
+    if (searchQuery.length > 0 || selectedMuscleGroup !== 'Todos') {
       const results = searchExercises(searchQuery, selectedMuscleGroup);
       setSearchResults(results);
     } else {
@@ -160,6 +159,7 @@ export default function EditWorkoutScreen() {
             <TextInput
               style={[styles.input, nameError && styles.inputError]}
               placeholder="Nome do Treino"
+              placeholderTextColor="#666"
               value={workoutName}
               onChangeText={(text) => {
                 setWorkoutName(text);
@@ -183,18 +183,19 @@ export default function EditWorkoutScreen() {
             <TextInput
               style={styles.input}
               placeholder="Procurar por nome..."
+              placeholderTextColor="#666"
               value={searchQuery}
               onChangeText={setSearchQuery}
             />
             {searchResults.length > 0 && (
-              <View style={styles.resultsWrapper}>
+              <ScrollView nestedScrollEnabled style={[styles.resultsWrapper, { maxHeight: 250 }]}>
                 {searchResults.map((item) => (
                   <TouchableOpacity key={item.id} style={styles.resultItem} onPress={() => handleAddExerciseClick(item)}>
-                    <Text>{item.name}</Text>
+                    <Text style={{ fontSize: 16, color: Colors.secondary }}>{item.name}</Text>
                     <Ionicons name="add" size={20} color={Colors.primary} />
                   </TouchableOpacity>
                 ))}
-              </View>
+              </ScrollView>
             )}
             <Text style={styles.label}>Exercícios Atuais</Text>
           </>
@@ -209,7 +210,7 @@ export default function EditWorkoutScreen() {
         )}
         ListFooterComponent={
           <View style={{ marginTop: 20, marginBottom: 40 }}>
-            <Button title="Guardar Alterações" onPress={handleUpdateWorkout} color={Colors.primary} />
+            <Button title="Salvar Alterações" onPress={handleUpdateWorkout} color={Colors.primary} />
           </View>
         }
         contentContainerStyle={{ paddingBottom: 20 }}

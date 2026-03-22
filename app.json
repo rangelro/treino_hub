@@ -2,34 +2,35 @@
   "expo": {
     "name": "treino_hub",
     "slug": "treino_hub",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "icon": "./assets/images/icon.png",
     "newArchEnabled": true,
-    "owner": "rangelro",
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "package": "com.rangelro.treino_hub",
-      "edgeToEdgeEnabled": true,
-      "googleServicesFile": "./google-services.json"
-    },
-    "plugins": [
-      "expo-router",
-      [
-        "onesignal-expo-plugin",
-        {
-          "mode": "development"
-        }
-      ]
-    ],
     "extra": {
-      "router": {},
       "eas": {
         "projectId": "eaa4493f-6f76-4ab0-add2-84c5ce4e475c"
       }
+    },
+    "android": {
+      "package": "com.rangelro.treino_hub"
     }
-  }
+  },
+  "ios": {
+    "supportsTablet": true
+  },
+  "android": {
+    "edgeToEdgeEnabled": true,
+    "package": "com.anonymous.treino_hub"
+  },
+  "plugins": [
+    "expo-router"
+  ],
+  "extra": {
+    "router": {},
+    "eas": {
+      "projectId": "eaa4493f-6f76-4ab0-add2-84c5ce4e475c"
+    }
+  },
+  "owner": "rangelro"
 }
